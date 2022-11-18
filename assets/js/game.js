@@ -113,8 +113,23 @@ function foodPlace() {
 }
 
 //Muda a direção da cobra
-function changeDirection() {
-
+function changeDirection(e) {
+    if(e.code === "ArrowUp"){
+        velocityX = 0;
+        velocityY = -1
+    }
+    else if(e.code === "ArrowDown") {
+        velocityX = 0;
+        velocityY = 1;
+    }
+    else if(e.code === "ArrowRight") {
+        velocityX = -1;
+        velocityY = 0;
+    }
+    else if(e.code === "ArrowLeft") {
+        velocityX = 1;
+        velocityY = 0;
+    }
 }
 
 function gameOverEvent(){
