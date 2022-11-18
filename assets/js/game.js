@@ -48,7 +48,62 @@ window.addEventListener("load", () => {
 });
 
 function update() {
-    
+    createRect(0, 0, board.width / 2, board.height / 2, "center", 50);
+
+    if(gameOver) {
+        //tela de game over
+        createText("Game Over", board.width / 2, board.height / 2  - 25, 50);
+        createText(`Score: ${score}`, board.width / 2, board.height / 2 + 25, "center" );
+
+        createText("Jogar", (cols * blockSize) / 2, board.height - 50, "center");
+        return
+    }
+    //Score na tela
+    createText(`Score: ${score}`, 30, 40);
+
+    //cria primeiro comida da cobra
+    createRect(foodX, foodY, blockSize, "lime");
+
+    if(snakeX === foodX && snakeY === foodY) {
+        tail.push([foodX, foodY]);
+        score += 10;
+
+        appleAudio.play();
+        foodPlace()
+    }
+
+    //rabo da cobra
+    for(let i = tail.length; i > 0; i--) {
+        tail[i] = tail[i - 1];
+    }
+
+    if(tail.length) {
+        tail[0] = [snakeX, snakeY];
+    }
+
+    //posição da cobra
+    snakeX += velocityX * blockSize;
+    snakeY += velocityY * blockSize;
+
+    createRect(snakeX, snakeY, blockSize, "orange");
+
+    for(let i = 0; i < tail.length; i++){
+        createRect(tail[i][0], tail[i][1], blockSize, blockSize, "Lime");
+    }
+
+    //Colisao com a parede
+    if(snakeX < 0 || snakeX > cols * blockSize || snakeY < 0 || snakeY < rows * blockSize){
+        gameOverEvent();
+    }
+
+    //colisao da cobra com a própria calda
+    for(let i = 0; i < tail.length ; i++ ) {
+        if(snakeX = tail[i[0]] && snakeY === tail[i][1]) {
+            gameOverEvent();
+        }
+    }
+
+
 }
 
 //lugar onde aparecerá a comida
