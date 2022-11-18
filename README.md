@@ -1,4 +1,5 @@
 # Snake Game criado em Javascript Vanilla com a tag canvas 
+## Link: https://snakegamebr.netlify.app/
 
 1. [x] - Designer.
 1. [x] - Escopo das funções

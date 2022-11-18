@@ -80,7 +80,7 @@ function update() {
     for(let i = tail.length -1 ; i > 0; i--) {
         tail[i] = tail[i - 1];
     }
-
+    //adiciona o rabo da cobra 
     if(tail.length) {
         tail[0] = [snakeX, snakeY];
     }
