@@ -7,3 +7,4 @@
     1.   [x] - Função update
     1.   [x] - Função foodPlace
     1.   [x] - Função changeDirection
+    1.   [ ] - Função gameOverEvent
