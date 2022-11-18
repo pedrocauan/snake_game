@@ -1,6 +1,6 @@
-let board; // Retangulo onde a cobrinha fica
+let board; // canvas onde a cobrinha fica
 let context; //contexto do canvas
-let blockSize = 20;
+let blockSize = 20; //tamanho do retangulo que fica a cobra
 let cols = 30;
 let rows =20;
 
@@ -108,7 +108,8 @@ function update() {
 
 //lugar onde aparecerá a comida
 function foodPlace() {
-
+    foodX = Math.floor(Math.random() * cols) * blockSize;
+    foodY = Math.floor(Math.random() * rows) * blockSize;
 }
 
 //Muda a direção da cobra
