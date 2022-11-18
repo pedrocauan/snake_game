@@ -59,6 +59,9 @@ function update() {
         createText("Jogar", (cols * blockSize) / 2, board.height - 50, "center");
         return
     }
+    createText("Jogar")
+
+    /
     //Score na tela
     createText(`Score: ${score}`, 30, 40);
 
@@ -69,7 +72,7 @@ function update() {
         tail.push([foodX, foodY]);
         score += 10;
 
-        /* appleAudio.play(); */
+        appleAudio.play();
         foodPlace();
     }
 
@@ -136,7 +139,7 @@ function changeDirection(e) {
 
 function gameOverEvent(){
     gameOver = true;
-/*     gameOverAudio.play(); */
+    gameOverAudio.play();
     snakeX = 0;
     snakeY = 0;
     velocityX = 1;

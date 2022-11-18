@@ -11,4 +11,5 @@
     1.   [x] - Função gameOverEvent
     1.   [x] - Função createRect
     1.   [x] - função createText
+1. [x] - Ajustando Audio
 1. [ ] - Refatoração
