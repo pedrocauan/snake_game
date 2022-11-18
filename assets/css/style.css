@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Sono', sans-serif;
+    color: RED;
+    background-color: black;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: lime;
+    margin-bottom: 2.5rem ;
+}
+
+canvas {
+    border: 0.3rem solid lime;
+}
