@@ -2,7 +2,7 @@ let board; // canvas onde a cobrinha fica
 let context; //contexto do canvas
 let blockSize = 20; //tamanho do retangulo que fica a cobra
 let cols = 30;
-let rows =20;
+let rows = 20;
 
 let aplleAudio; //audio da maçã sendo comida
 let gameOverAudio; //audio de gameOver
@@ -48,11 +48,12 @@ window.addEventListener("load", () => {
 });
 
 function update() {
-    createRect(0, 0, board.width / 2, board.height / 2, "center", 50);
+    //limpa tela
+    createRect(0, 0, board.width, board.height);
 
     if(gameOver) {
         //tela de game over
-        createText("Game Over", board.width / 2, board.height / 2  - 25, 50);
+        createText("Game Over", board.width / 2, board.height / 2  - 25,"center", 50);
         createText(`Score: ${score}`, board.width / 2, board.height / 2 + 25, "center" );
 
         createText("Jogar", (cols * blockSize) / 2, board.height - 50, "center");
@@ -62,18 +63,18 @@ function update() {
     createText(`Score: ${score}`, 30, 40);
 
     //cria primeiro comida da cobra
-    createRect(foodX, foodY, blockSize, "lime");
+    createRect(foodX, foodY, blockSize, blockSize, "lime");
 
     if(snakeX === foodX && snakeY === foodY) {
         tail.push([foodX, foodY]);
         score += 10;
 
-        appleAudio.play();
-        foodPlace()
+        /* appleAudio.play(); */
+        foodPlace();
     }
 
     //rabo da cobra
-    for(let i = tail.length; i > 0; i--) {
+    for(let i = tail.length -1 ; i > 0; i--) {
         tail[i] = tail[i - 1];
     }
 
@@ -85,25 +86,23 @@ function update() {
     snakeX += velocityX * blockSize;
     snakeY += velocityY * blockSize;
 
-    createRect(snakeX, snakeY, blockSize, "orange");
+    createRect(snakeX, snakeY, blockSize, blockSize, "orange");
 
     for(let i = 0; i < tail.length; i++){
         createRect(tail[i][0], tail[i][1], blockSize, blockSize, "Lime");
     }
 
     //Colisao com a parede
-    if(snakeX < 0 || snakeX > cols * blockSize || snakeY < 0 || snakeY < rows * blockSize){
+    if(snakeX < 0 || snakeX > cols * blockSize || snakeY < 0 || snakeY > rows * blockSize){
         gameOverEvent();
     }
 
     //colisao da cobra com a própria calda
     for(let i = 0; i < tail.length ; i++ ) {
-        if(snakeX = tail[i[0]] && snakeY === tail[i][1]) {
+        if(snakeX === tail[[i][0]] && snakeY === tail[i][1]) {
             gameOverEvent();
         }
     }
-
-
 }
 
 //lugar onde aparecerá a comida
@@ -114,37 +113,48 @@ function foodPlace() {
 
 //Muda a direção da cobra
 function changeDirection(e) {
+    //setas do teclado /\ < > \/
     if(e.code === "ArrowUp"){
         velocityX = 0;
-        velocityY = -1
+        velocityY = -1;
     }
     else if(e.code === "ArrowDown") {
         velocityX = 0;
         velocityY = 1;
     }
-    else if(e.code === "ArrowRight") {
+
+    else if(e.code === "ArrowLeft") {
         velocityX = -1;
         velocityY = 0;
     }
-    else if(e.code === "ArrowLeft") {
+    else if(e.code === "ArrowRight") {
         velocityX = 1;
         velocityY = 0;
     }
+    
 }
 
 function gameOverEvent(){
     gameOver = true;
-    gameOverAudio.play();
+/*     gameOverAudio.play(); */
     snakeX = 0;
     snakeY = 0;
-    velocityX = 0;
+    velocityX = 1;
     velocityY = 0;
+    tail = [];
+    score = 0;
 }
 
-function createRect() {
+function createRect(x, y, width, height, color = "black") {
+    context.fillStyle  = color;
+    context.fillRect(x, y, width, height);
 
 }
 
-function createText() {
+function createText(text, x , y, textAlign = "start", fontSize = 22) {
+    context.fillStyle = "lime";
+    context.font = `${fontSize}px Sono`;
+    context.textAlign = textAlign;
+    context.fillText(text, x , y);
 
 }
