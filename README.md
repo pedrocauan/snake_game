@@ -1,4 +1,4 @@
-# Snake Game criado em Javascript Vanilla com o canvas 
+# Snake Game criado em Javascript Vanilla com a tag canvas 
 
 1. [x] - Designer.
 1. [x] - Escopo das funções
